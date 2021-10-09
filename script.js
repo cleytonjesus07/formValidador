@@ -71,10 +71,26 @@ let validator = {
 
 form.addEventListener("submit", validator.handleSubmit);
 let counter = 0;
+let path = "./images/";
+let imgsSub = []
+
+for (let i = 1; i <= 14; i++) {
+    if (i == 3 || i == 4 || i == 5 || i == 10) {
+        imgsSub.push(path + "apex" + i + ".png")
+    } else {
+        imgsSub.push(path + "apex" + i + ".jpg")
+    }
+
+}
+
+console.log(imgsSub)
 
 function alternarBackground(images) {
-    images = localStorage.getItem("imgs");
-    images = images.split(",");
+    if (images == undefined) {
+        images = localStorage.getItem("imgs");
+        images = images.split(",");
+    }
+
 
     let leftSide = document.querySelector(".leftside");
     if (counter > images.length - 1) {
@@ -93,7 +109,7 @@ let images = [];
 
 if (!localStorage.getItem("imgs")) {
     $.ajax({
-        url: "./tree/main/images",
+        url: "./images",
         success: (data) => {
             $(data).find("#files > li a").each((_, i) => {
                 if (i.getAttribute("href").indexOf("apex") > -1 || i.getAttribute("href").indexOf("/form") == -1) {
@@ -104,23 +120,26 @@ if (!localStorage.getItem("imgs")) {
             /* alternarBackground(images); */
             localStorage.setItem("imgs", images)
         },
+        error: () => {
+            setInterval(() => alternarBackground(imgsSub), 4000)
+        }
     })
 }
 
 
-setInterval(alternarBackground, 4000);
+
 
 function showForm() {
-    
+
     let telaLoading = document.querySelector(".loading--screen");
-    let playingMusicTheme = () =>{ 
+    let playingMusicTheme = () => {
         let audioPlayer = document.querySelector("audio");
         audioPlayer.volume = 0.1;
         audioPlayer.play();
 
         audioPlayer.onended = () => {
             audioPlayer.currentTime = 0;
-            audioPlayer.play()   
+            audioPlayer.play()
         }
     }
     playingMusicTheme();
@@ -129,11 +148,12 @@ function showForm() {
         telaLoading.setAttribute("style", "display:none");
         alternarBackground();
     }, 1000);
+    setInterval(alternarBackground, 4000);
 }
 
-function initializing(){
+function initializing() {
     document.querySelector(".loading--screen").innerHTML = "<button onclick='showForm()'>Exibir Formulário</button>"
 }
 
-document.onreadystatechange = () => (document.readyState === "complete") && setTimeout(initializing,2000);
+document.onreadystatechange = () => (document.readyState === "complete") && setTimeout(initializing, 2000);
 
