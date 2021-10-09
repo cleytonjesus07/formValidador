@@ -93,7 +93,7 @@ let images = [];
 
 if (!localStorage.getItem("imgs")) {
     $.ajax({
-        url: "./images",
+        url: "./tree/main/images",
         success: (data) => {
             $(data).find("#files > li a").each((_, i) => {
                 if (i.getAttribute("href").indexOf("apex") > -1 || i.getAttribute("href").indexOf("/form") == -1) {
