@@ -72,24 +72,25 @@ let validator = {
 form.addEventListener("submit", validator.handleSubmit);
 let counter = 0;
 let path = "./images/";
-let imgsSub = []
-
+let images = [];
+let ajax = false;
 for (let i = 1; i <= 14; i++) {
-    if (i == 3 || i == 4 || i == 5 || i == 10) {
-        imgsSub.push(path + "apex" + i + ".png")
+    if (i == 3  || i == 5 ) {
+        images.push(path + "apex" + i + ".png")
     } else {
-        imgsSub.push(path + "apex" + i + ".jpg")
+        images.push(path + "apex" + i + ".jpg")
     }
 
 }
 
-console.log(imgsSub)
 
 function alternarBackground(images) {
-    if (images == undefined) {
+
+    if (ajax) {
         images = localStorage.getItem("imgs");
         images = images.split(",");
     }
+    
 
 
     let leftSide = document.querySelector(".leftside");
@@ -105,23 +106,24 @@ function alternarBackground(images) {
 
 }
 
-let images = [];
+
 
 if (!localStorage.getItem("imgs")) {
     $.ajax({
         url: "./images",
         success: (data) => {
+            images.length = 0;
             $(data).find("#files > li a").each((_, i) => {
                 if (i.getAttribute("href").indexOf("apex") > -1 || i.getAttribute("href").indexOf("/form") == -1) {
                     images.push(i.getAttribute("href"))
                 }
             })
-
+            ajax = true;
             /* alternarBackground(images); */
             localStorage.setItem("imgs", images)
         },
         error: () => {
-            setInterval(() => alternarBackground(imgsSub), 4000)
+        console.log("Opá");
         }
     })
 }
@@ -130,7 +132,6 @@ if (!localStorage.getItem("imgs")) {
 
 
 function showForm() {
-
     let telaLoading = document.querySelector(".loading--screen");
     let playingMusicTheme = () => {
         let audioPlayer = document.querySelector("audio");
@@ -146,9 +147,8 @@ function showForm() {
     telaLoading.setAttribute("style", "opacity:0;transition:all ease 0.3s");
     setTimeout(() => {
         telaLoading.setAttribute("style", "display:none");
-        alternarBackground();
     }, 1000);
-    setInterval(alternarBackground, 4000);
+    setInterval(() => alternarBackground(images), 4000);
 }
 
 function initializing() {
