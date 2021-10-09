@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="./script.js" defer></script>
+</head>
+<body>
+
+    <div class="loading--screen">
+        <div class="loader"></div>
+        Loading...
+    </div>
+
+    <!-- Formulário -->
+    <div class="screen">
+        <div class="leftside"></div>
+        <div class="rightside">
+           
+            <div class="top--container">
+                <img id="logo" src="./images/logo.png" alt="logo">
+                <a href="https://www.ea.com/pt-br/games/apex-legends" class="title">Apex Legends</a>
+            </div>
+            <h3>Crie uma conta</h3>
+
+            <form method="post" class="validator">
+                <label for="name">
+                    Seu nome:<br/>
+                    <input type="text" data-rules="required|min=10" name="name" id="name" placeholder="Digite o seu nome">
+                </label>
+                <label for="name">
+                    Seu e-mail:<br/>
+                    <input type="text" data-rules="required|email"  name="email" id="email" placeholder="Digite o seu e-mail">
+                </label>
+                <label for="name">
+                    Sua senha:<br/>
+                    <input type="password" data-rules="required|min=5" name="password" id="password" placeholder="Digite a sua senha">
+                </label>
+                <label for="submit">
+                    <input type="submit" name="submit" id="submit" value="Cadastrar">
+                </label>
+            </form>
+
+            <div class="info">
+                Já possui uma conta? <a href="">Fazer Login</a>
+            </div>
+            <div class="footer">
+                Desenvolvido por <a href="https://linktr.ee/cleyton_jesus07" target="_blank">@cleyton_jesus07</a>
+            </div>
+        </div>
+    </div>
+    <audio src="./sound/apexSound.mp3"></audio>
+</body>
+</html>
