@@ -215,19 +215,23 @@ button:hover{
     }
 }
 
-@media (max-width:540px) {
+@media (max-width:542px) {
     .leftside{
         border-radius: 5px;
         border: 1px #fff solid;
         max-height: 115px;
         z-index: 1;
     }
+    .top--container{
+        margin-top: 50px;
+    }
 
 
     .rightside{
         background-color: #222;
         height: 100%;
-        max-width: 100%;
+        max-width: unset;
+        width: 100%;
     }
     
 }
