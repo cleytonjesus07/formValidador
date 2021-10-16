@@ -135,7 +135,7 @@ function showForm() {
     let telaLoading = document.querySelector(".loading--screen");
     let playingMusicTheme = () => {
         let audioPlayer = document.querySelector("audio");
-        audioPlayer.volume = 0.1;
+        audioPlayer.volume = 0.5;
         audioPlayer.play();
 
         audioPlayer.onended = () => {

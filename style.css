@@ -117,7 +117,7 @@ a:hover{
     justify-content: center;
     align-items: center;
     background-color: #222;
-    z-index: 1;
+    z-index: 2;
     font-size: 20px;
 }
 
@@ -167,7 +167,7 @@ button:hover{
     color: orange;
 }
 
-@media (max-width:600px) {
+@media (max-width:1140px) {
 
     .screen{
         display: flex;
@@ -213,4 +213,21 @@ button:hover{
         width: 100px;
         top: 0;
     }
+}
+
+@media (max-width:540px) {
+    .leftside{
+        border-radius: 5px;
+        border: 1px #fff solid;
+        max-height: 115px;
+        z-index: 1;
+    }
+
+
+    .rightside{
+        background-color: #222;
+        height: 100%;
+        max-width: 100%;
+    }
+    
 }
